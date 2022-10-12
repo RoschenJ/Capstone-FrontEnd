@@ -3,36 +3,95 @@ import { Layout, Space } from 'antd';
 import { Typography } from 'antd';
 import { Button } from 'antd';
 import { Image } from 'antd';
+import { BrowserRouter, Routes, Route, Link, useNavigate} from 'react-router-dom';
 import './App.css';
-import AppSpacing from './pages/spacing';
-import AppUpload from './pages/upload';
-// import AppTags from './pages/tags';
-// import AppOCR from './pages/ocr';
+import AppSpacing from './functions/spacing';
+import AppUpload from './functions/upload';
 
 const { Header, Footer, Content } = Layout;
 const { Title } = Typography;
 
 var image = 'https://media.architecturaldigest.com/photos/60a6a478ced6797772f44d7a/3:2/w_1599,h_1066,c_limit/20191011-DSC_7759-Edit_HI_RES.jpeg'
 
-function AppTags() {
+function App() {
+  return (
+    <BrowserRouter>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<AppHome />} />
+        <Route path="tags" element={<AppTags />} />
+        <Route path="ocr" element={<AppOCR />} />
+      </Routes>
+    </div>
+    </BrowserRouter>
+  )
+};
+
+function AppHome() {
   return (
     <div className="App">
       <Layout>
         <Header style={{background:'#003b56'}}>
-          <Title style={{color:'white'}}>TAGS ON IMAGES</Title>
+          <Title style={{color:'white'}}>BuilderTrend</Title>
         </Header>
         <Content style={{background:'white'}}>
           <AppSpacing/>
-          <Image
-            width={1200}
-            src= {image}
-          />
           <AppSpacing/>
-          <Space size={'middle'}>
-          <AppUpload/>
-          {/* <Button type="primary">Upload</Button>           */}
-          <Button type="primary">View Details</Button>
-          </Space>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          {/* <Button type="primary" size='large'>Tags on Images</Button> */}
+          <nav>
+            <Link to="/tags">Tags on Images</Link>
+          </nav>
+          <AppSpacing/>         
+          {/* <Button type="primary" size='large'>OCR on Receipts</Button> */}
+          <nav>
+            <Link to="/ocr">OCR on Receipts</Link>
+          </nav>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
+          <AppSpacing/>
           <AppSpacing/>
         </Content>
         <Footer style={{background:'#003b56', color:'white'}}>©Buildertrend</Footer>
@@ -68,65 +127,25 @@ function AppOCR() {
   );
 }
 
-function App() {
+function AppTags() {
   return (
     <div className="App">
       <Layout>
         <Header style={{background:'#003b56'}}>
-          <Title style={{color:'white'}}>BuilderTrend</Title>
+          <Title style={{color:'white'}}>TAGS ON IMAGES</Title>
         </Header>
         <Content style={{background:'white'}}>
           <AppSpacing/>
+          <Image
+            width={1200}
+            src= {image}
+          />
           <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <Button type="primary" size='large'>Tags on Images</Button>
-          <AppSpacing/>         
-          <Button type="primary" size='large'>OCR on Receipts</Button>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
+          <Space size={'middle'}>
+          <AppUpload/>
+          {/* <Button type="primary">Upload</Button>           */}
+          <Button type="primary">View Details</Button>
+          </Space>
           <AppSpacing/>
         </Content>
         <Footer style={{background:'#003b56', color:'white'}}>©Buildertrend</Footer>
@@ -135,6 +154,6 @@ function App() {
   );
 }
 
-//export default App;
+export default App;
 //export default AppTags;
-export default AppOCR;
+// export default AppOCR;
