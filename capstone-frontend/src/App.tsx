@@ -61,12 +61,12 @@ function AppHome() {
           <AppSpacing/>
           {/* <Button type="primary" size='large'>Tags on Images</Button> */}
           <nav>
-            <Link to="/tags">Tags on Images</Link>
+            <Link to="/tags" ><Button type="primary" size='large'>Tags on Images</Button></Link>
           </nav>
           <AppSpacing/>         
           {/* <Button type="primary" size='large'>OCR on Receipts</Button> */}
           <nav>
-            <Link to="/ocr">OCR on Receipts</Link>
+            <Link to="/ocr"><Button type="primary" size='large'>OCR on Receipts</Button></Link>
           </nav>
           <AppSpacing/>
           <AppSpacing/>
@@ -154,6 +154,6 @@ function AppTags() {
   );
 }
 
-export default App;
-//export default AppTags;
+   export default App;
+// export default AppTags;
 // export default AppOCR;
