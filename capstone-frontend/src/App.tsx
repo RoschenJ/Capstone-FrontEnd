@@ -13,18 +13,42 @@ const { Title } = Typography;
 
 var image = 'https://media.architecturaldigest.com/photos/60a6a478ced6797772f44d7a/3:2/w_1599,h_1066,c_limit/20191011-DSC_7759-Edit_HI_RES.jpeg'
 
+// const requestOptions = {
+//   method: 'POST',
+//   headers: { 'Content-Type': 'application/json' },
+//   body: JSON.stringify({ path: "C:\\Users\\Roschen\\Pictures\\Best-farm-animals-cow.jpg", type: 'tags'})
+// };
+
+async function fetchData(_path: string, _type: string) {
+  const response = await fetch('https://localhost:7273/api/main/post');
+  const jsonResult = await response.json();
+  return jsonResult;
+}
+
+document.addEventListener("DOMContentLoaded",async () => {
+  let jsonResult = [];
+  try {
+    jsonResult = await fetchData("C:\\Users\\Roschen\\Pictures\\Best-farm-animals-cow.jpg", "tags");
+  } catch (error) {
+    console.error(error);
+  }
+  console.log(jsonResult);
+});
+
+
+
 function App() {
-  return (
-    <BrowserRouter>
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<AppHome />} />
-        <Route path="tags" element={<AppTags />} />
-        <Route path="ocr" element={<AppOCR />} />
-      </Routes>
-    </div>
-    </BrowserRouter>
-  )
+    return (
+      <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<AppHome />} />
+          <Route path="tags" element={<AppTags />} />
+          <Route path="ocr" element={<AppOCR />} />
+        </Routes>
+      </div>
+      </BrowserRouter>
+    );
 };
 
 function AppHome() {
@@ -154,6 +178,4 @@ function AppTags() {
   );
 }
 
-   export default App;
-// export default AppTags;
-// export default AppOCR;
+export default App;
