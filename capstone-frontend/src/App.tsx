@@ -20,7 +20,13 @@ var image = 'https://media.architecturaldigest.com/photos/60a6a478ced6797772f44d
 // };
 
 async function fetchData(_path: string, _type: string) {
-  const response = await fetch('https://localhost:7273/api/main/post');
+  const response = await fetch('https://localhost:7273/api/main/post', 
+  {
+    method: 'POST',
+    //mode: 'cors',
+    headers: {  'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'accept': 'application/json' },
+    body: JSON.stringify({path: _path, type: _type}) 
+  });
   const jsonResult = await response.json();
   return jsonResult;
 }
