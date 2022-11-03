@@ -20,13 +20,13 @@ var image = 'https://media.architecturaldigest.com/photos/60a6a478ced6797772f44d
 // };
 
 async function fetchData(_path: string, _type: string) {
-  const response = await fetch('https://localhost:7273/api/main/post', 
-  {
+  const formData = {
     method: 'POST',
-    //mode: 'cors',
-    headers: {  'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'accept': 'application/json' },
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({path: _path, type: _type}) 
-  });
+  }
+  const response = await fetch('https://localhost:7273/api/main/post', formData
+);
   const jsonResult = await response.json();
   return jsonResult;
 }
@@ -34,7 +34,7 @@ async function fetchData(_path: string, _type: string) {
 document.addEventListener("DOMContentLoaded",async () => {
   let jsonResult = [];
   try {
-    jsonResult = await fetchData("C:\\Users\\Roschen\\Pictures\\Best-farm-animals-cow.jpg", "tags");
+    jsonResult = await fetchData("C:\\Users\\saeba\\Documents\\Fall 22\\Capstone\\Cloud Vision Capstone images\\Construction Images\\bathroom.jpeg", "tags");
   } catch (error) {
     console.error(error);
   }
