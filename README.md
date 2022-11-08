@@ -1,4 +1,4 @@
-# Google Vision API Backend
+# Google Vision API Frontend
 
 ## Release Notes:
 10/25/2022
