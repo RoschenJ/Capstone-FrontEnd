@@ -23,35 +23,15 @@ var image = 'https://media.architecturaldigest.com/photos/60a6a478ced6797772f44d
 
 // const LOCALHOST = 'https://localhost:7273/api/main/post';
 
-// const [description, setDescription] = useState([]);
-
-// async function fetchData(_path: string, _type: string) {
-//   const formData = {
-//     method: 'POST',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify({path: _path, type: _type}) 
-//   }
-//   const response = await fetch(LOCALHOST, formData
-// );
-//   const jsonResult = await response.json();
-//   const jsonParse = jsonResult.result.map((data: { description: any; }) => {
-//     return {
-//       items: data.description,
-//     }
-//   })
-//   // return jsonResult.response[0].description;
-//   setDescription(jsonParse);
-// }
-
-// document.addEventListener("DOMContentLoaded",async () => {
-//   let jsonResult = [];
-//   try {
-//     jsonResult = await fetchData("C:\\Users\\Roschen\\Documents\\UNOFall2022\\Capstone\\Construction Images\\bathroom.jpeg", "tags");
-//   } catch (error) {
-//     console.error(error);
-//   }
-//   console.log(jsonResult);
-// });
+document.addEventListener("DOMContentLoaded",async () => {
+  let jsonResult = [];
+  try {
+    jsonResult = await fetchData("C:\\Users\\saeba\\Documents\\Fall 22\\Capstone\\Cloud Vision Capstone images\\Receipt Images\\fakereceipt.jpg", "tags");
+  } catch (error) {
+    console.error(error);
+  }
+  console.log(jsonResult);
+});
 
 
 
