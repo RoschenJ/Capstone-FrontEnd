@@ -34,7 +34,7 @@ async function fetchData(_path: string, _type: string) {
 document.addEventListener("DOMContentLoaded",async () => {
   let jsonResult = [];
   try {
-    jsonResult = await fetchData("C:\\Users\\saeba\\Documents\\Fall 22\\Capstone\\Cloud Vision Capstone images\\Construction Images\\bathroom.jpeg", "tags");
+    jsonResult = await fetchData("C:\\Users\\saeba\\Documents\\Fall 22\\Capstone\\Cloud Vision Capstone images\\Receipt Images\\fakereceipt.jpg", "tags");
   } catch (error) {
     console.error(error);
   }
