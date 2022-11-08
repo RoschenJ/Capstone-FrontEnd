@@ -3,9 +3,9 @@
 ## Release Notes:
 11/08/2022
 <ul>
-    <li>
-        Makes fetch call to back end API.
-    </li>
+	<li>
+		Added fetch call to backend api.
+	</li>
 </ul>
 10/25/2022
 <ul>
