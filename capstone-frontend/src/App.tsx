@@ -73,7 +73,7 @@ function AppOCR() {
   }
 
     const onClickHandler = async () => {
-      fetchData("C:\\Users\\Roschen\\Documents\\UNOFall2022\\Capstone\\Receipt Images\\Mezcalero.jpg", "ocr");
+      fetchData("C:\\Users\\Roschen\\Documents\\UNOFall2022\\Capstone\\Receipt Images\\Brandys-walmart.jpg", "ocr");
     }
   return (
     <div className="App">
@@ -85,7 +85,7 @@ function AppOCR() {
           <AppSpacing/>
           <Image
             width={1200}
-            src= {"https://upserve.com/media/sites/2/Bill-from-Mezcalero-in-Washington-D.C.-photo-by-Alfredo-Solis-1-e1507226752437.jpg"}
+            src= {"https://nwlc.org/wp-content/uploads/2022/01/Brandys-walmart-receipt-8.webp"}
           />
           <section> 
             <Description items = {description} />
@@ -107,7 +107,7 @@ function AppOCR() {
 function AppTags() {
   const LOCALHOST = 'https://localhost:7273/api/main/post';
 
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(" ");
 
   async function fetchData(_path: string, _type: string) {
     const formData = {
@@ -122,6 +122,9 @@ function AppTags() {
 
     for (let i = 0; i < jsonResult.response.length; i++ ) {
       arrayResult.push(jsonResult.response[i].description)
+      arrayResult.push(" (Score: ")
+      arrayResult.push(jsonResult.response[i].score)
+      arrayResult.push(") | ")
     }
 
     return arrayResult;
@@ -135,7 +138,9 @@ function AppTags() {
         console.error(error);
       }
 
-      setDescription(jsonResult.join(' '))
+      console.log(jsonResult);
+      let join = jsonResult.join('');
+      setDescription(join);
     }
   return (
     <div className="App">
