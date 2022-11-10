@@ -6,54 +6,14 @@ import { Image } from 'antd';
 import { BrowserRouter, Routes, Route, Link, useNavigate} from 'react-router-dom';
 import './App.css';
 import AppSpacing from './functions/spacing';
+import AppLargeSpacing from './functions/largespacing';
 import AppUpload from './functions/upload';
-import Item from 'antd/lib/list/Item';
-import Paragraph from 'antd/lib/skeleton/Paragraph';
+import Description from './Description';
 
 const { Header, Footer, Content } = Layout;
 const { Title } = Typography;
 
 var image = 'https://media.architecturaldigest.com/photos/60a6a478ced6797772f44d7a/3:2/w_1599,h_1066,c_limit/20191011-DSC_7759-Edit_HI_RES.jpeg'
-
-// const requestOptions = {
-//   method: 'POST',
-//   headers: { 'Content-Type': 'application/json' },
-//   body: JSON.stringify({ path: "C:\\Users\\Roschen\\Pictures\\Best-farm-animals-cow.jpg", type: 'tags'})
-// };
-
-// const LOCALHOST = 'https://localhost:7273/api/main/post';
-
-// const [description, setDescription] = useState([]);
-
-// async function fetchData(_path: string, _type: string) {
-//   const formData = {
-//     method: 'POST',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify({path: _path, type: _type}) 
-//   }
-//   const response = await fetch(LOCALHOST, formData
-// );
-//   const jsonResult = await response.json();
-//   const jsonParse = jsonResult.result.map((data: { description: any; }) => {
-//     return {
-//       items: data.description,
-//     }
-//   })
-//   // return jsonResult.response[0].description;
-//   setDescription(jsonParse);
-// }
-
-// document.addEventListener("DOMContentLoaded",async () => {
-//   let jsonResult = [];
-//   try {
-//     jsonResult = await fetchData("C:\\Users\\Roschen\\Documents\\UNOFall2022\\Capstone\\Construction Images\\bathroom.jpeg", "tags");
-//   } catch (error) {
-//     console.error(error);
-//   }
-//   console.log(jsonResult);
-// });
-
-
 
 function App() {
     return (
@@ -77,30 +37,7 @@ function AppHome() {
           <Title style={{color:'white'}}>BuilderTrend</Title>
         </Header>
         <Content style={{background:'white'}}>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
+          <AppLargeSpacing/>
           <nav>
             <Link to="/tags" ><Button type="primary" size='large'>Tags on Images</Button></Link>
           </nav>
@@ -108,31 +45,7 @@ function AppHome() {
           <nav>
             <Link to="/ocr"><Button type="primary" size='large'>OCR on Receipts</Button></Link>
           </nav>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
-          <AppSpacing/>
+          <AppLargeSpacing/>
         </Content>
         <Footer style={{background:'#003b56', color:'white'}}>©Buildertrend</Footer>
       </Layout>
@@ -141,6 +54,27 @@ function AppHome() {
 }
 
 function AppOCR() {
+  const LOCALHOST = 'https://localhost:7273/api/main/post';
+
+  const [description, setDescription] = useState([]);
+
+  async function fetchData(_path: string, _type: string) {
+    const formData = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({path: _path, type: _type}) 
+    }
+
+    const response = await fetch(LOCALHOST, formData);
+    const jsonResult = await response.json();
+    let zero = jsonResult.response[0].description;
+
+    setDescription(zero)
+  }
+
+    const onClickHandler = async () => {
+      fetchData("C:\\Users\\Roschen\\Documents\\UNOFall2022\\Capstone\\Receipt Images\\Mezcalero.jpg", "ocr");
+    }
   return (
     <div className="App">
       <Layout>
@@ -151,13 +85,16 @@ function AppOCR() {
           <AppSpacing/>
           <Image
             width={1200}
-            src= {image}
+            src= {"https://upserve.com/media/sites/2/Bill-from-Mezcalero-in-Washington-D.C.-photo-by-Alfredo-Solis-1-e1507226752437.jpg"}
           />
+          <section> 
+            <Description items = {description} />
+          </section>
           <AppSpacing/>
           <Space size={'middle'}>
           <AppUpload/>
           {/* <Button type="primary">Upload</Button>           */}
-          <Button type="primary">View Details</Button>
+          <Button type="primary" onClick={onClickHandler}>View Details</Button>
           </Space>
           <AppSpacing/>
         </Content>
@@ -170,39 +107,36 @@ function AppOCR() {
 function AppTags() {
   const LOCALHOST = 'https://localhost:7273/api/main/post';
 
-const [description, setDescription] = useState([]);
+  const [description, setDescription] = useState("");
 
-async function fetchData(_path: string, _type: string) {
-  const formData = {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({path: _path, type: _type}) 
-  }
-  const response = await fetch(LOCALHOST, formData
-);
-  const jsonResult = await response.json();
-  // const jsonParse = jsonResult.result.map((data: { description: any; }) => {
-  //   return {
-  //     items: data.description,
-  //   }
-  // })
-  // setDescription(jsonParse);
-
-  //for one result
-  // return jsonResult.response[0].description;
-  //for all results but not just description
-  return jsonResult.response;
-}
-  const onClickHandler = async () => {
-    // fetchData("C:\\Users\\Roschen\\Documents\\UNOFall2022\\Capstone\\Construction Images\\bathroom.jpeg", "tags");
-    let jsonResult = [];
-    try {
-      jsonResult = await fetchData("C:\\Users\\Roschen\\Documents\\UNOFall2022\\Capstone\\Construction Images\\bathroom.jpeg", "tags");
-    } catch (error) {
-      console.error(error);
+  async function fetchData(_path: string, _type: string) {
+    const formData = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({path: _path, type: _type}) 
     }
-    console.log(jsonResult);
+
+    const response = await fetch(LOCALHOST, formData);
+    const jsonResult = await response.json();
+    let arrayResult = [];
+
+    for (let i = 0; i < jsonResult.response.length; i++ ) {
+      arrayResult.push(jsonResult.response[i].description)
+    }
+
+    return arrayResult;
   }
+    const onClickHandler = async () => {
+      let jsonResult = [];
+ 
+      try {
+        jsonResult = await fetchData("C:\\Users\\Roschen\\Documents\\UNOFall2022\\Capstone\\Construction Images\\kitchen-decor.jpg", "tags");
+      } catch (error) {
+        console.error(error);
+      }
+
+      setDescription(jsonResult.join(' '))
+    }
   return (
     <div className="App">
       <Layout>
@@ -213,11 +147,11 @@ async function fetchData(_path: string, _type: string) {
           <AppSpacing/>
           <Image
             width={1200}
-            src= {image}
+            src= {'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/kitchen-decor-ideas-1580491833.jpg?crop=1.00xw:0.669xh;0,0.151xh&resize=500:*'}
           />
-          {/* <section> 
-            data = {description}
-          </section> */}
+          <section> 
+            <Description items = {description} />
+          </section>
           <AppSpacing/>
           <Space size={'middle'}>
           <AppUpload/>
