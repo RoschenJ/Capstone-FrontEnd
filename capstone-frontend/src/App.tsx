@@ -3,6 +3,7 @@ import { Layout, Space } from 'antd';
 import { Typography } from 'antd';
 import { Button } from 'antd';
 import { Image } from 'antd';
+import { Input } from 'antd';
 import { BrowserRouter, Routes, Route, Link, useNavigate} from 'react-router-dom';
 import './App.css';
 import AppSpacing from './functions/spacing';
@@ -12,8 +13,6 @@ import Description from './Description';
 
 const { Header, Footer, Content } = Layout;
 const { Title } = Typography;
-
-var image = 'https://media.architecturaldigest.com/photos/60a6a478ced6797772f44d7a/3:2/w_1599,h_1066,c_limit/20191011-DSC_7759-Edit_HI_RES.jpeg'
 
 function App() {
     return (
@@ -58,6 +57,12 @@ function AppOCR() {
 
   const [description, setDescription] = useState([]);
 
+  const [image, setImage] = useState("Choose an Option")
+
+  const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+    setImage(e.target.value)
+  }
+
   async function fetchData(_path: string, _type: string) {
     const formData = {
       method: 'POST',
@@ -73,7 +78,7 @@ function AppOCR() {
   }
 
     const onClickHandler = async () => {
-      fetchData("C:\\Users\\Roschen\\Documents\\UNOFall2022\\Capstone\\Receipt Images\\Brandys-walmart.jpg", "ocr");
+      fetchData("C:\\Users\\Roschen\\Documents\\GitHub\\Capstone-FrontEnd\\capstone-frontend\\public\\OCR\\" + image + ".jpg", "ocr");
     }
   return (
     <div className="App">
@@ -84,16 +89,19 @@ function AppOCR() {
         <Content style={{background:'white'}}>
           <AppSpacing/>
           <Image
-            width={1200}
-            src= {"https://nwlc.org/wp-content/uploads/2022/01/Brandys-walmart-receipt-8.webp"}
+            width={800}
+            height={1000}
+            src = {image + ".jpg"}
           />
           <section> 
             <Description items = {description} />
           </section>
+          <section>
+            <h3> Options: (HomeDepot, HomeDepot2, HomeDepot3, Mezcalero, Ace, Ace2, Builders, Lowes, Walmart) </h3>
+          </section>
           <AppSpacing/>
           <Space size={'middle'}>
-          <AppUpload/>
-          {/* <Button type="primary">Upload</Button>           */}
+          <Input placeholder="Basic usage" value={image} onChange={handleChange} />
           <Button type="primary" onClick={onClickHandler}>View Details</Button>
           </Space>
           <AppSpacing/>
@@ -107,7 +115,12 @@ function AppOCR() {
 function AppTags() {
   const LOCALHOST = 'https://localhost:7273/api/main/post';
 
-  const [description, setDescription] = useState(" ");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("Choose an Option")
+
+  const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+    setImage(e.target.value)
+  }
 
   async function fetchData(_path: string, _type: string) {
     const formData = {
@@ -124,24 +137,28 @@ function AppTags() {
       arrayResult.push(jsonResult.response[i].description)
       arrayResult.push(" (Score: ")
       arrayResult.push(jsonResult.response[i].score)
-      arrayResult.push(") | ")
+      arrayResult.push(")")
+      arrayResult.push(" | ")
     }
+
+    arrayResult.pop();
 
     return arrayResult;
   }
-    const onClickHandler = async () => {
-      let jsonResult = [];
- 
-      try {
-        jsonResult = await fetchData("C:\\Users\\Roschen\\Documents\\UNOFall2022\\Capstone\\Construction Images\\kitchen-decor.jpg", "tags");
-      } catch (error) {
-        console.error(error);
-      }
 
-      console.log(jsonResult);
-      let join = jsonResult.join('');
-      setDescription(join);
+  const onClickHandler = async () => {
+    let jsonResult = [];
+
+    try {
+      jsonResult = await fetchData("C:\\Users\\Roschen\\Documents\\GitHub\\Capstone-FrontEnd\\capstone-frontend\\public\\TAGS\\" + image + ".jpg", "tags");
+    } catch (error) {
+      console.error(error);
     }
+
+    console.log(jsonResult);
+    let join = jsonResult.join('');
+    setDescription(join);
+  }
   return (
     <div className="App">
       <Layout>
@@ -152,15 +169,19 @@ function AppTags() {
           <AppSpacing/>
           <Image
             width={1200}
-            src= {'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/kitchen-decor-ideas-1580491833.jpg?crop=1.00xw:0.669xh;0,0.151xh&resize=500:*'}
+            height={800}
+            // src= {"/cow.jpg"}
+            src = {image + ".jpg"}
           />
           <section> 
             <Description items = {description} />
           </section>
+          <section>
+            <h3> Options: (bathroom, bathroom_construction, bedroom construction, bedroom, familyroom construction, familyroom, kitchen contruction, kitchen decor, kitchen) </h3>
+          </section>
           <AppSpacing/>
           <Space size={'middle'}>
-          <AppUpload/>
-          {/* <Button type="primary">Upload</Button>           */}
+           <Input placeholder="Basic usage" value={image} onChange={handleChange} />
           <Button type="primary" onClick={onClickHandler}>View Details</Button>
           </Space>
           <AppSpacing/>
