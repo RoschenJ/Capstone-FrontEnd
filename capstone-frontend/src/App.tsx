@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Space } from 'antd';
+import { Layout, Space, Upload } from 'antd';
 import { Typography } from 'antd';
 import { Button } from 'antd';
 import { Image } from 'antd';
@@ -9,6 +9,7 @@ import './App.css';
 import AppSpacing from './functions/spacing';
 import AppLargeSpacing from './functions/largespacing';
 import AppUpload from './functions/upload';
+import FileUpload from './functions/axios';
 import Description from './Description';
 
 const { Header, Footer, Content } = Layout;
@@ -181,7 +182,8 @@ function AppTags() {
           </section>
           <AppSpacing/>
           <Space size={'middle'}>
-           <Input placeholder="Basic usage" value={image} onChange={handleChange} />
+          <FileUpload/>
+          <Input placeholder="Basic usage" value={image} onChange={handleChange} />
           <Button type="primary" onClick={onClickHandler}>View Details</Button>
           </Space>
           <AppSpacing/>

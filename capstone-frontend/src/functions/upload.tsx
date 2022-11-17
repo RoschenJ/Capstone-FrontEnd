@@ -3,9 +3,11 @@ import type { UploadProps } from 'antd';
 import { Button, message, Upload } from 'antd';
 import React from 'react';
 
+
 const props: UploadProps = {
   name: 'file',
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+  action: 'https://localhost:7273/api/main/post',
+  method: 'POST',
   headers: {
     authorization: 'authorization-text',
   },
