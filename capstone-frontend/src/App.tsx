@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { Layout, Space, Upload } from 'antd';
+import { Layout, Space} from 'antd';
 import { Typography } from 'antd';
 import { Button } from 'antd';
 import { Image } from 'antd';
 import { Input } from 'antd';
-import { BrowserRouter, Routes, Route, Link, useNavigate} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 import './App.css';
 import AppSpacing from './functions/spacing';
 import AppLargeSpacing from './functions/largespacing';
-import AppUpload from './functions/upload';
-import FileUpload from './functions/axios';
 import Description from './Description';
 
 const { Header, Footer, Content } = Layout;
@@ -99,6 +97,7 @@ function AppOCR() {
           </section>
           <section>
             <h3> Options: (HomeDepot, HomeDepot2, HomeDepot3, Mezcalero, Ace, Ace2, Builders, Lowes, Walmart) </h3>
+            <h3> Blur Options: (Ace-med, Ace-high, HomeDepot-med, HomeDepot-high, Walmart-med, Walmart-high) </h3>
           </section>
           <AppSpacing/>
           <Space size={'middle'}>
@@ -119,15 +118,8 @@ function AppTags() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("Choose an Option")
 
-  // const options = ["bathroom", "bathroom_construction", "bedroom construction", "bedroom", "familyroom construction", "familyroom", "kitchen contruction", "kitchen decor", "kitchen"]
-
   const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
-    // for (let i = 0; i < options.length; i++) {
-    //   if (options[i] == e.target.value) {
         setImage(e.target.value)
-      // } else {
-      //       setImage("bathroom")
-      // } 
     }
 
   async function fetchData(_path: string, _type: string) {
@@ -178,7 +170,6 @@ function AppTags() {
           <Image
             width={1200}
             height={800}
-            // src= {"https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101027/pavelstasevich181101027.jpg"}
             src = {image + ".jpg"}
           />
           <section> 
@@ -186,10 +177,10 @@ function AppTags() {
           </section>
           <section>
             <h3> Options: (bathroom, bathroom_construction, bedroom construction, bedroom, familyroom construction, familyroom, kitchen contruction, kitchen decor, kitchen) </h3>
+            <h3> Brightness Options: (bathroom-light, bathroom-dark, bedroom-light, bedroom-dark, kitchen-light, kitchen-dark) </h3>
           </section>
           <AppSpacing/>
           <Space size={'middle'}>
-          <FileUpload/>
           <Input placeholder="Basic usage" value={image} onChange={handleChange} />
           <Button type="primary" onClick={onClickHandler}>View Details</Button>
           </Space>
