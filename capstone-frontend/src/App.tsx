@@ -39,11 +39,11 @@ function AppHome() {
         <Content style={{background:'white'}}>
           <AppLargeSpacing/>
           <nav>
-            <Link to="/tags" ><Button type="primary" size='large'>Tags on Images</Button></Link>
+            <Link to="/tags/" ><Button type="primary" size='large'>Tags on Images</Button></Link>
           </nav>
           <AppSpacing/>         
           <nav>
-            <Link to="/ocr"><Button type="primary" size='large'>OCR on Receipts</Button></Link>
+            <Link to="/ocr/"><Button type="primary" size='large'>OCR on Receipts</Button></Link>
           </nav>
           <AppLargeSpacing/>
         </Content>
@@ -79,7 +79,7 @@ function AppOCR() {
   }
 
     const onClickHandler = async () => {
-      fetchData("C:\\Users\\Roschen\\Documents\\GitHub\\Capstone-FrontEnd\\capstone-frontend\\public\\OCR\\" + image + ".jpg", "ocr");
+      fetchData(".\\public\\OCR\\" + image + ".jpg", "ocr");
     }
   return (
     <div className="App">
@@ -119,9 +119,16 @@ function AppTags() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("Choose an Option")
 
+  // const options = ["bathroom", "bathroom_construction", "bedroom construction", "bedroom", "familyroom construction", "familyroom", "kitchen contruction", "kitchen decor", "kitchen"]
+
   const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
-    setImage(e.target.value)
-  }
+    // for (let i = 0; i < options.length; i++) {
+    //   if (options[i] == e.target.value) {
+        setImage(e.target.value)
+      // } else {
+      //       setImage("bathroom")
+      // } 
+    }
 
   async function fetchData(_path: string, _type: string) {
     const formData = {
@@ -151,7 +158,7 @@ function AppTags() {
     let jsonResult = [];
 
     try {
-      jsonResult = await fetchData("C:\\Users\\Roschen\\Documents\\GitHub\\Capstone-FrontEnd\\capstone-frontend\\public\\TAGS\\" + image + ".jpg", "tags");
+      jsonResult = await fetchData(".\\public\\TAGS\\" + image + ".jpg", "tags");
     } catch (error) {
       console.error(error);
     }
@@ -171,7 +178,7 @@ function AppTags() {
           <Image
             width={1200}
             height={800}
-            // src= {"/cow.jpg"}
+            // src= {"https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101027/pavelstasevich181101027.jpg"}
             src = {image + ".jpg"}
           />
           <section> 
