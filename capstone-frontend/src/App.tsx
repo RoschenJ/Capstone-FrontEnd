@@ -71,8 +71,13 @@ function AppOCR() {
 
     const response = await fetch(LOCALHOST, formData);
     const jsonResult = await response.json();
-    let zero = jsonResult.response[0].description;
-
+    let zero;
+    if (typeof jsonResult.response[0] !== 'undefined') {
+      zero = jsonResult.response[0].description;
+    }
+    else {
+      zero = "COULD NOT PARSE TEXT";
+    }
     setDescription(zero)
   }
 
